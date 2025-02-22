@@ -8,12 +8,38 @@ const initialValues = {
   password: ''
 }
 
+const errorMessages = {
+  ad: 'Ad olarak en az 3 karakter giriniz.',
+  soyad: 'Soyad olarak en az 3 karakter giriniz.',
+  email: 'Geçerli bir email adresi giriniz.',
+  password: 'En az 8 karakter, en az 1 büyük harf, en az 1 küçük harf, en az 1 sembol ve en az 1 rakam içermelidir.'
+}
 export default function Register() {
   const [formData, setFormData] = useState(initialValues);
+  const [errors, setErrors] = useState({
+    ad: false,
+    soyad: false,
+    email: false,
+    password: false
+  })
+  const [isValid, setIsValid] = useState(false);
 
   const handleChange = ((event) => {
     const {name, value} = event.target;
     setFormData({...formData, [name]: value})
+    if(name ==='ad' || name === 'soyad') {
+      if(value.trim().length >= 3) {
+        setErrors({...errors, [name]: false})
+      } else {
+        setErrors({...errors, [name]: true})
+      }
+    }
+    if(name ==='email') {
+
+    }
+    if (name ==='password') {
+      
+    }
   })
 
   const handleSubmit = ((event) => {
@@ -21,7 +47,7 @@ export default function Register() {
 
   }) 
 
-  
+
   return (
   <Card>
   <CardHeader>
